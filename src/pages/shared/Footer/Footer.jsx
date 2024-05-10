@@ -20,12 +20,12 @@ function Footer() {
   );
   return (
     <div className="bg-gray-300 mt-10">
-      <footer className="footer p-10 text-gray-content">
+      <footer className="footer p-6 py-20 text-gray-content">
         <Link to="/">
           <Logo />
         </Link>
         <nav>
-          <h6 className="footer-title">Pages</h6>
+          <h6 className="footer-title text-base">Pages</h6>
           <ul className="grid grid-flow-col gap-4 text-xl">{links}</ul>
         </nav>
       </footer>
