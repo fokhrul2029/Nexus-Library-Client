@@ -1,7 +1,34 @@
+import { Link } from "react-router-dom";
+import Logo from "../Logo/Logo";
+
 function Footer() {
+  const links = (
+    <>
+      <li className="link hover:text-blue-500 ">
+        <Link to="/">Home</Link>
+      </li>
+      <li className="link hover:text-blue-500 ">
+        <Link to="/add-book">Add Book</Link>
+      </li>
+      <li className="link hover:text-blue-500 ">
+        <Link to="/all-books">All Books</Link>
+      </li>
+      <li className="link hover:text-blue-500 ">
+        <Link to="/borrowed-books">Borrowed Books</Link>
+      </li>
+    </>
+  );
   return (
-    <div>
-      <h1 className="text-4xl">This is Footer</h1>
+    <div className="bg-gray-300 mt-10">
+      <footer className="footer p-10 text-gray-content">
+        <Link to="/">
+          <Logo />
+        </Link>
+        <nav>
+          <h6 className="footer-title">Pages</h6>
+          <ul className="grid grid-flow-col gap-4 text-xl">{links}</ul>
+        </nav>
+      </footer>
     </div>
   );
 }

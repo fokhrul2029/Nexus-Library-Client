@@ -20,7 +20,7 @@ function Navbar() {
   );
 
   return (
-    <div className="bg-base-300">
+    <div className="bg-base-300 mb-10">
       <div className="navbar container mx-auto h-24 px-4">
         <div className="navbar-start">
           <div className="dropdown">
