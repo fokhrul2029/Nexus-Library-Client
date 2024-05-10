@@ -1,7 +1,9 @@
+import Banner from "../Banner/Banner";
+
 function Home() {
   return (
     <div>
-      <h1 className="text 4xl">this is Home page</h1>
+      <Banner />
     </div>
   );
 }
