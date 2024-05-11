@@ -2,6 +2,7 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contextApi/AuthProvider";
+import swal from "sweetalert";
 
 function Login() {
   const [email, setEmail] = useState(null);
@@ -13,11 +14,20 @@ function Login() {
     const user = { email, password };
     console.log(user);
     login(email, password)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        swal({
+          title: "Grate!",
+          text: "You have successfully loggedIn!",
+          icon: "success",
+        });
       })
       .catch((error) => {
-        console.error(error);
+        console.error(error.message);
+        swal({
+          title: "Login Failed!",
+          text: "Email or password invalid!",
+          icon: "warning",
+        });
       });
   };
   return (
