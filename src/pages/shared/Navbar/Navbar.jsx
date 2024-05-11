@@ -5,10 +5,8 @@ import { AuthContext } from "../../../contextApi/AuthProvider";
 
 function Navbar() {
   const location = useLocation();
-  const { user } = useContext(AuthContext);
   const { pathname } = location;
-
-  console.log(user);
+  const { user, logout } = useContext(AuthContext);
 
   const links = (
     <>
@@ -26,6 +24,12 @@ function Navbar() {
       </li>
     </>
   );
+
+  const handleLogout = () => {
+    logout()
+      .then(() => console.log("Logout Success!"))
+      .catch((error) => console.error(error));
+  };
 
   return (
     <div className="bg-base-300 mb-10">
@@ -63,7 +67,18 @@ function Navbar() {
           <ul className="menu menu-horizontal px-1 space-x-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          {pathname === "/login" ? (
+          {user ? (
+            <>
+              <img
+                className="w-12 mr-2 h-12 border-4 rounded-full border-base-200"
+                src={user.photoURL}
+                alt=""
+              />
+              <button onClick={handleLogout} className="btn">
+                Logout
+              </button>
+            </>
+          ) : pathname === "/login" ? (
             <Link to="/register" className="btn">
               Register
             </Link>
