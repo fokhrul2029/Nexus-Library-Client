@@ -1,10 +1,14 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../Logo/Logo";
+import { useContext } from "react";
+import { AuthContext } from "../../../contextApi/AuthProvider";
 
 function Navbar() {
   const location = useLocation();
-
+  const { user } = useContext(AuthContext);
   const { pathname } = location;
+
+  console.log(user);
 
   const links = (
     <>
