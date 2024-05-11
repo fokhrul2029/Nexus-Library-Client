@@ -1,7 +1,11 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../Logo/Logo";
 
 function Navbar() {
+  const location = useLocation();
+
+  const { pathname } = location;
+
   const links = (
     <>
       <li>
@@ -55,9 +59,15 @@ function Navbar() {
           <ul className="menu menu-horizontal px-1 space-x-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <Link to="login" className="btn">
-            Login
-          </Link>
+          {pathname === "/login" ? (
+            <Link to="/register" className="btn">
+              Register
+            </Link>
+          ) : (
+            <Link to="login" className="btn">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>
