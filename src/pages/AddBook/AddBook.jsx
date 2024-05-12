@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../contextApi/AuthProvider";
+import swal from "sweetalert";
 
 const AddBook = () => {
   const { user } = useContext(AuthContext);
@@ -10,6 +11,7 @@ const AddBook = () => {
   const [category, setCategory] = useState(null);
   const [description, setDescription] = useState(null);
   const [rating, setRating] = useState(1);
+  const [img, setImg] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,8 +23,9 @@ const AddBook = () => {
       name,
       quantity,
       category,
-      description,
       rating,
+      img,
+      description,
     };
     console.log(bookInfo);
 
@@ -30,8 +33,22 @@ const AddBook = () => {
       .post("http://localhost:3000/add-book", {
         bookInfo,
       })
-      .then((res) => console.log(res))
-      .catch((error) => console.log(error));
+      .then((res) => {
+        console.log(res);
+        swal({
+          title: "Good job!",
+          text: "Book Added success!",
+          icon: "success",
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        swal({
+          title: "Request failed!",
+          text: "Something went wrong. Try Later!",
+          icon: "success",
+        });
+      });
   };
 
   return (
@@ -92,7 +109,19 @@ const AddBook = () => {
                 required
               />
             </div>
-            <div className="md:col-span-2">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Image URL
+              </label>
+              <input
+                type="text"
+                className="input input-bordered w-full"
+                value={img}
+                onChange={(e) => setImg(e.target.value)}
+                required
+              />
+            </div>
+            <div>
               <label className="block text-sm font-medium text-gray-700">
                 Rating
               </label>
