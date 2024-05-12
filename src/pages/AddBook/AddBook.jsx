@@ -1,9 +1,12 @@
-import { useState } from "react";
+import axios from "axios";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../contextApi/AuthProvider";
 
 const AddBook = () => {
+  const { user } = useContext(AuthContext);
   const [name, setName] = useState(null);
   const [quantity, setQuantity] = useState(null);
-  const [author, setAuthor] = useState(null);
+  const [author, setAuthor] = useState(user?.displayName);
   const [category, setCategory] = useState(null);
   const [description, setDescription] = useState(null);
   const [rating, setRating] = useState(1);
@@ -11,14 +14,24 @@ const AddBook = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const bookInfo = {
+      author: {
+        email: user.email,
+        name: author,
+      },
       name,
       quantity,
-      author,
       category,
       description,
       rating,
     };
     console.log(bookInfo);
+
+    axios
+      .post("http://localhost:3000/add-book", {
+        bookInfo,
+      })
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -59,9 +72,10 @@ const AddBook = () => {
               </label>
               <input
                 type="text"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full  font-bold"
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
+                disabled
                 required
               />
             </div>

@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contextApi/AuthProvider";
 import swal from "sweetalert";
 
@@ -8,6 +8,7 @@ function Login() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -20,9 +21,9 @@ function Login() {
           text: "You have successfully loggedIn!",
           icon: "success",
         });
+        navigate("/");
       })
-      .catch((error) => {
-        console.error(error.message);
+      .catch(() => {
         swal({
           title: "Login Failed!",
           text: "Email or password invalid!",

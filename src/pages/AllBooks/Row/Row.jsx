@@ -1,28 +1,27 @@
-function Row() {
+/* eslint-disable react/prop-types */
+function Row({ book }) {
+  const { author, name, img, category, rating } = book;
   return (
     <tr>
       <td>
         <div className="avatar">
           <div className="mask mask-squircle w-12 h-12">
-            <img
-              src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png"
-              alt="Avatar Tailwind CSS Component"
-            />
+            <img src={img} alt="Avatar Tailwind CSS Component" />
           </div>
         </div>
       </td>
       <td>
         <div className="flex items-center gap-3">
           <div>
-            <div className="font-bold">Hart Hagerty</div>
-            <div className="text-sm opacity-50">United States</div>
+            <div className="font-bold">{name}</div>
+            <div className="text-sm opacity-50">{author.name}</div>
           </div>
         </div>
       </td>
       <td>
-        Zemlak, Daniel and Leannon
+        {category}
         <br />
-        <span className="badge badge-ghost badge-sm">*****</span>
+        <span className="badge badge-ghost badge-sm">{rating}</span>
       </td>
       <th>
         <button className="btn btn-accent">Update</button>

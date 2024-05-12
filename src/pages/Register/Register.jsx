@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contextApi/AuthProvider";
 import swal from "sweetalert";
 
@@ -9,7 +9,8 @@ function Register() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [photo, setPhoto] = useState(null);
-  const { createUser } = useContext(AuthContext);
+  const { createUser, update } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const validation = (name, email, photo, password) => {
     if (name.length < 6) {
@@ -77,8 +78,11 @@ function Register() {
           text: "Account Creation Success!",
           icon: "success",
         });
+        update(name, photo);
+        navigate("/");
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log(error);
         swal({
           title: "Registration Failed!",
           text: "Something went wrong!",

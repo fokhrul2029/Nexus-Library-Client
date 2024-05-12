@@ -1,6 +1,9 @@
+import { useLoaderData } from "react-router-dom";
 import Row from "../Row/Row";
 
 function TableView() {
+  const books = useLoaderData();
+
   return (
     <div className="overflow-x-auto">
       <table className="table">
@@ -14,10 +17,9 @@ function TableView() {
           </tr>
         </thead>
         <tbody>
-          <Row />
-          <Row />
-          <Row />
-          <Row />
+          {books?.map((book) => (
+            <Row key={book._id} book={book} />
+          ))}
         </tbody>
       </table>
     </div>
