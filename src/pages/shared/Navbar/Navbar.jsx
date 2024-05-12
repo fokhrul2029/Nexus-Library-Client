@@ -2,6 +2,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import { useContext } from "react";
 import { AuthContext } from "../../../contextApi/AuthProvider";
+import swal from "sweetalert";
 
 function Navbar() {
   const location = useLocation();
@@ -27,8 +28,19 @@ function Navbar() {
 
   const handleLogout = () => {
     logout()
-      .then(() => console.log("Logout Success!"))
-      .catch((error) => console.error(error));
+      .then(() => {
+        swal({
+          title: "Logout Success!",
+          icon: "success",
+        });
+      })
+      .catch(() => {
+        swal({
+          title: "Request Failed!",
+          text: "Something wnt wrong! Try later.",
+          icon: "warning",
+        });
+      });
   };
 
   return (
