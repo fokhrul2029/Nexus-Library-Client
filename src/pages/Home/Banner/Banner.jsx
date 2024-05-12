@@ -7,8 +7,10 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import Slider from "../Slider/Slider";
+import { useLoaderData } from "react-router-dom";
 
 function Banner() {
+  const categories = useLoaderData();
   return (
     <div>
       <Swiper
@@ -18,15 +20,11 @@ function Banner() {
         autoplay={true}
         modules={[Pagination, Navigation, Autoplay]}
       >
-        <SwiperSlide>
-          <Slider />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Slider />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Slider />
-        </SwiperSlide>
+        {categories?.map((data) => (
+          <SwiperSlide key={data._id}>
+            <Slider data={data} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );
