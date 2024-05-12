@@ -101,13 +101,22 @@ const AddBook = () => {
               <label className="block text-sm font-medium text-gray-700">
                 Category
               </label>
-              <input
-                type="text"
+              <select
                 className="input input-bordered w-full"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 required
-              />
+              >
+                <option className="text-gray-400" value="" disabled selected>
+                  Select an option
+                </option>
+                <option value="business">Business</option>
+                <option value="travel">Travel</option>
+                <option value="psychology">Psychology</option>
+                <option value="fantasy">Fantasy</option>
+                <option value="novel">Novel</option>
+                <option value="history">History</option>
+              </select>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">
