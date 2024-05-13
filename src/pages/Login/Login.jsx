@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contextApi/AuthProvider";
 import swal from "sweetalert";
+import SocialLogin from "../shared/SocialLogin/SocialLogin";
 
 function Login() {
   const [email, setEmail] = useState(null);
@@ -67,6 +68,7 @@ function Login() {
         <div className="form-control mt-6">
           <button className="btn btn-primary">Login</button>
         </div>
+        <SocialLogin />
         <p className="text-center">
           Don't have account?{" "}
           <Link to="/register" className="link text-blue-500">
