@@ -10,7 +10,7 @@ import Slider from "../Slider/Slider";
 import { useLoaderData } from "react-router-dom";
 
 function Banner() {
-  const categories = useLoaderData();
+  const categories = useLoaderData([]);
   return (
     <div>
       <Swiper

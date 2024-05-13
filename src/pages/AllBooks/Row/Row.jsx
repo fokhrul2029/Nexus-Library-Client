@@ -1,6 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 /* eslint-disable react/prop-types */
 function Row({ book }) {
-  const { author, name, img, category, rating } = book;
+  const navigate = useNavigate();
+
+  const { _id, author, name, img, category, rating } = book;
   return (
     <tr>
       <td>
@@ -24,7 +28,12 @@ function Row({ book }) {
         <span className="badge badge-ghost badge-sm">{rating}</span>
       </td>
       <th>
-        <button className="btn btn-accent">Update</button>
+        <button
+          onClick={() => navigate(`/update/${_id}`)}
+          className="btn btn-accent"
+        >
+          Update
+        </button>
       </th>
     </tr>
   );

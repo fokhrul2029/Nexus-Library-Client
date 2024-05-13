@@ -81,10 +81,14 @@ function Navbar() {
         <div className="navbar-end">
           {user ? (
             <>
+              <span className="font-semibold px-1 rounded-md ">
+                {user.displayName}
+              </span>
               <img
-                className="w-12 mr-2 h-12 border-4 rounded-full border-base-200"
+                className="w-12 mr-2 h-12 border-4 rounded-full border-base-200 cursor-pointer"
                 src={user.photoURL}
-                alt=""
+                alt={user.displayName}
+                title={user.displayName}
               />
               <button onClick={handleLogout} className="btn">
                 Logout

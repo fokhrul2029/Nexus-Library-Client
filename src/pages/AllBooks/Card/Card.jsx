@@ -1,6 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 /* eslint-disable react/prop-types */
 function Card({ book }) {
-  const { author, name, img, category, rating } = book;
+  const { _id, author, name, img, category, rating } = book;
+
+  const navigate = useNavigate();
   return (
     <div className="card bg-base-100 shadow-xl">
       <figure>
@@ -15,7 +19,12 @@ function Card({ book }) {
         </div>
         <div className="card-actions justify-between items-center">
           <div className="">{rating}</div>
-          <btn className="btn btn-accent">Update</btn>
+          <btn
+            onClick={() => navigate(`/update/${_id}`)}
+            className="btn btn-accent"
+          >
+            Update
+          </btn>
         </div>
       </div>
     </div>

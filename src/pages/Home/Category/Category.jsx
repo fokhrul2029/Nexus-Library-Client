@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import Card from "../Card/Card";
 
 function Category() {
-  const categories = useLoaderData();
+  const categories = useLoaderData([]);
 
   return (
     <div className="py-14">
