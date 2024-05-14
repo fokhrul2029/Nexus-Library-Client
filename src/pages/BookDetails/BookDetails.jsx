@@ -13,7 +13,7 @@ function BookDetails() {
         <div className="md:flex">
           <div className="md:w-1/2 p-4 relative overflow-hidden">
             <img
-              src="https://i.ibb.co/tmnCTkx/Screenshot-44.png"
+              src={img}
               alt={name}
               className="w-full h-auto object-cover rounded-lg transition-transform duration-500 transform hover:scale-110"
             />

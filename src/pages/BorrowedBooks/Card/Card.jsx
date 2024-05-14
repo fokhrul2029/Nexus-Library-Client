@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 
+import axios from "axios";
 import swal from "sweetalert";
 
 function Card({ book }) {
@@ -13,11 +14,23 @@ function Card({ book }) {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        //  Code here to return book
-
-        swal("Poof! Your imaginary file has been deleted!", {
-          icon: "success",
-        });
+        axios
+          .patch(`http://localhost:3000/return-books/${id}`)
+          .then((res) => {
+            console.log(res);
+            swal({
+              title: "Returned Success!",
+              icon: "success",
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+            swal({
+              title: "Request Failed!",
+              text: "Return Request failed. Try Later!",
+              icon: "warning",
+            });
+          });
       } else {
         swal("Your imaginary book is safe!");
       }
