@@ -3,6 +3,7 @@ import Logo from "../Logo/Logo";
 import { useContext } from "react";
 import { AuthContext } from "../../../contextApi/AuthProvider";
 import swal from "sweetalert";
+import axios from "axios";
 
 function Navbar() {
   const location = useLocation();
@@ -29,6 +30,7 @@ function Navbar() {
   const handleLogout = () => {
     logout()
       .then(() => {
+        axios.post("https://b9-a11-jwt-battlefield-backend.vercel.app/logout");
         swal({
           title: "Logout Success!",
           icon: "success",

@@ -1,10 +1,23 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Card from "../Card";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function CategoryBooks() {
-  const books = useLoaderData();
-
+  // const books = useLoaderData();
+  const [books, setBooks] = useState([]);
   const category = useParams();
+
+  const url = `https://b9-a11-jwt-battlefield-backend.vercel.app/category-books?category=${category.category}`;
+
+  useEffect(() => {
+    axios
+      .get(url, { withCredentials: true })
+      .then((res) => {
+        setBooks(res.data);
+      })
+      .catch((error) => console.log(error));
+  }, [url]);
 
   return (
     <div>

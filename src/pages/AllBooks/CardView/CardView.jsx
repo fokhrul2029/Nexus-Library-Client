@@ -1,9 +1,20 @@
-import { useLoaderData } from "react-router-dom";
+import axios from "axios";
 import Card from "../Card/Card";
+import { useEffect, useState } from "react";
 
 function CardView() {
-  const books = useLoaderData();
+  const [books, setBooks] = useState([]);
 
+  useEffect(() => {
+    axios
+      .get("https://b9-a11-jwt-battlefield-backend.vercel.app/all-books", { withCredentials: true })
+      .then((res) => {
+        setBooks(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

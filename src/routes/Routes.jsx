@@ -21,15 +21,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        loader: () => fetch("http://localhost:3000/books-categories"),
+        loader: () => fetch("https://b9-a11-jwt-battlefield-backend.vercel.app/books-categories"),
         element: <Home />,
       },
       {
         path: "/books/:category",
-        loader: ({ params }) =>
-          fetch(
-            `http://localhost:3000/category-books?category=${params.category}`
-          ),
         element: (
           <PrivateRoute>
             <CategoryBooks />
@@ -38,8 +34,6 @@ const router = createBrowserRouter([
       },
       {
         path: "/book-details/:id",
-        loader: ({ params }) =>
-          fetch(`http://localhost:3000/all-books/${params.id}`),
         element: (
           <PrivateRoute>
             <BookDetails />
@@ -57,7 +51,7 @@ const router = createBrowserRouter([
       {
         path: "/update/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/all-books/${params.id}`),
+          fetch(`https://b9-a11-jwt-battlefield-backend.vercel.app/all-books/${params.id}`),
         element: (
           <PrivateRoute>
             <Update />
@@ -82,7 +76,6 @@ const router = createBrowserRouter([
       },
       {
         path: "/all-books",
-        loader: () => fetch("http://localhost:3000/all-books"),
         element: (
           <PrivateRoute>
             <AllBooks />
@@ -90,7 +83,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/borrowed-books", 
+        path: "/borrowed-books",
         element: (
           <PrivateRoute>
             <BorrowedBooks />

@@ -7,11 +7,11 @@ function BorrowedBooks() {
   const { user } = useContext(AuthContext);
   const [borrowedBooks, setBorrowedBooks] = useState([]);
 
-  const url = `http://localhost:3000/borrowed-books?email=${user.email}`;
+  const url = `https://b9-a11-jwt-battlefield-backend.vercel.app/borrowed-books?email=${user.email}`;
 
   useEffect(() => {
     axios
-      .get(url)
+      .get(url, { withCredentials: true })
       .then((res) => {
         setBorrowedBooks(res.data);
       })

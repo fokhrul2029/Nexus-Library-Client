@@ -6,17 +6,19 @@ import "swiper/css/autoplay";
 
 import WriterCard from "../WriterCard/WriterCard";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Writers() {
   const [writers, setWriter] = useState(null);
 
-  axios
-    .get("http://localhost:3000/writers")
-    .then((res) => {
-      setWriter(res.data);
-    })
-    .catch((error) => console.error(error));
+  useEffect(() => {
+    axios
+      .get("https://b9-a11-jwt-battlefield-backend.vercel.app/writers")
+      .then((res) => {
+        setWriter(res.data);
+      })
+      .catch((error) => console.error(error));
+  }, []);
 
   return (
     <div className="py-14 bg-slate-200 rounded-md">

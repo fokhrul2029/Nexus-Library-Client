@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contextApi/AuthProvider";
 import swal from "sweetalert";
 import axios from "axios";
@@ -9,6 +9,7 @@ function Modal({ book }) {
   const [name] = useState(user.displayName);
   const [email] = useState(user.email);
   const [returnDate, setReturnDate] = useState(null);
+  const [counter, setCounter] = useState(0);
 
   const date = () => {
     const today = new Date();
@@ -21,6 +22,20 @@ function Modal({ book }) {
     return formattedDate;
   };
 
+  const url = `https://b9-a11-jwt-battlefield-backend.vercel.app/borrowed-books?email=${user.email}`;
+
+  useEffect(() => {
+    axios
+      .get(url, { withCredentials: true })
+      .then((res) => {
+        const num = res.data.length;
+        setCounter(num);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [url, counter]);
+
   const handleForm = () => {
     const borrowInfo = {
       name,
@@ -29,6 +44,14 @@ function Modal({ book }) {
       returnDate,
       bookInfo: book,
     };
+    if (counter > 2) {
+      swal({
+        title: "Eligible to borrowed!",
+        text: "Your are only borrowed 3 Books, either return book!",
+        icon: "warning",
+      });
+      return false;
+    }
     if (returnDate > date()) {
       console.log("True");
     } else {
@@ -39,9 +62,10 @@ function Modal({ book }) {
       });
       return false;
     }
+
     console.log(borrowInfo);
     axios
-      .patch("http://localhost:3000/borrowed", { borrowInfo })
+      .patch("https://b9-a11-jwt-battlefield-backend.vercel.app/borrowed", { borrowInfo })
       .then((res) => {
         console.log(res);
         swal({
@@ -105,6 +129,7 @@ function Modal({ book }) {
               onClick={handleForm}
               type="submit"
               className="btn btn-accent"
+              disabled={counter > 3 ? true : false}
             >
               Borrow
             </button>

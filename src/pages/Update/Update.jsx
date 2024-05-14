@@ -5,7 +5,9 @@ import axios from "axios";
 import swal from "sweetalert";
 
 function Update() {
+  const { user } = useContext(AuthContext);
   const book = useLoaderData();
+
   const {
     _id,
     name: bookName,
@@ -16,7 +18,7 @@ function Update() {
     description: des,
     quantity: booksQuantity,
   } = book;
-  const { user } = useContext(AuthContext);
+
   const [name, setName] = useState(bookName);
   const [quantity, setQuantity] = useState(booksQuantity);
   const [author, setAuthor] = useState(authorInfo?.name);
@@ -44,7 +46,7 @@ function Update() {
     console.log(bookInfo);
 
     axios
-      .put(`http://localhost:3000/update/${_id}`, { bookInfo })
+      .put(`https://b9-a11-jwt-battlefield-backend.vercel.app/update/${_id}`, { bookInfo })
       .then((res) => {
         console.log(res);
         swal({
