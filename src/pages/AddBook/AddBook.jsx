@@ -21,9 +21,9 @@ const AddBook = () => {
         name: author,
       },
       name,
-      quantity,
+      quantity: parseInt(quantity),
       category,
-      rating,
+      rating: parseInt(rating),
       img,
       description,
     };

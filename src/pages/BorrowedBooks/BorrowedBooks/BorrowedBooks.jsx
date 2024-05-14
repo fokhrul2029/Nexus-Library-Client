@@ -1,6 +1,24 @@
+import axios from "axios";
 import Card from "../Card/Card";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../contextApi/AuthProvider";
 
 function BorrowedBooks() {
+  const { user } = useContext(AuthContext);
+  const [borrowedBooks, setBorrowedBooks] = useState([]);
+
+  const url = `http://localhost:3000/borrowed-books?email=${user.email}`;
+
+  useEffect(() => {
+    axios
+      .get(url)
+      .then((res) => {
+        setBorrowedBooks(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [url]);
   return (
     <div>
       <h1 className="text-4xl text-center py-10 my-4 rounded-lg bg-base-200">
@@ -19,9 +37,9 @@ function BorrowedBooks() {
               </tr>
             </thead>
             <tbody>
-              <Card />
-              <Card />
-              <Card />
+              {borrowedBooks?.map((book) => (
+                <Card key={book._id} book={book} />
+              ))}
             </tbody>
           </table>
         </div>

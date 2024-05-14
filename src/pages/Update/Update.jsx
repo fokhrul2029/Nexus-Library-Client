@@ -34,12 +34,13 @@ function Update() {
         name: author,
       },
       name,
-      quantity,
+      quantity: parseInt(quantity),
       category,
-      rating,
+      rating: parseInt(rating),
       img,
       description,
     };
+
     console.log(bookInfo);
 
     axios

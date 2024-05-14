@@ -1,4 +1,5 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
+import Modal from "./Modal";
 
 function BookDetails() {
   const book = useLoaderData();
@@ -26,15 +27,29 @@ function BookDetails() {
               <p className="text-gray-600 mb-2">Rating: {rating}</p>
               <p className="text-gray-600 mb-6">{description}</p>
               <div className="flex gap-2 items-center">
-                <button onClick={() => navigate(-1)} className="btn btn-success">
+                <button
+                  onClick={() => navigate(-1)}
+                  className="btn btn-info"
+                >
                   Back
                 </button>
-                <button className="btn btn-error">Borrow</button>
+                <button
+                  onClick={() =>
+                    document.getElementById("my_modal_4").showModal()
+                  }
+                  className="btn btn-accent"
+                >
+                  Borrow
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <dialog id="my_modal_4" className="modal">
+        <Modal book={book} />
+      </dialog>
     </div>
   );
 }
