@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contextApi/AuthProvider";
 import swal from "sweetalert";
+import SocialLogin from "../shared/SocialLogin/SocialLogin";
 
 /* eslint-disable react/no-unescaped-entities */
 function Register() {
@@ -153,6 +154,7 @@ function Register() {
         <div className="form-control mt-6">
           <button className="btn btn-primary">Create Account</button>
         </div>
+        <SocialLogin />
         <p className="text-center">
           Already have an account?{" "}
           <Link to="/login" className="link text-blue-500">

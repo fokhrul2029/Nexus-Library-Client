@@ -30,9 +30,13 @@ const AddBook = () => {
     console.log(bookInfo);
 
     axios
-      .post("http://localhost:3000/add-book", {
-        bookInfo,
-      })
+      .post(
+        "http://localhost:3000/add-book",
+        {
+          bookInfo,
+        },
+        { withCredentials: true }
+      )
       .then((res) => {
         console.log(res);
         swal({
