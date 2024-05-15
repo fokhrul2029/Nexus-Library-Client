@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import axios from "axios";
 import Card from "../Card/Card";
 import { useEffect, useState } from "react";
 
-function CardView() {
+function CardView({ available }) {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -18,9 +19,13 @@ function CardView() {
 
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {books?.map((book) => (
-        <Card key={book._id} book={book} />
-      ))}
+      {books?.map((book) =>
+        available ? (
+          <Card key={book._id} book={book} />
+        ) : (
+          book.quantity > 0 && <Card key={book._id} book={book} />
+        )
+      )}
     </div>
   );
 }

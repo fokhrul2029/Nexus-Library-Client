@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import Row from "../Row/Row";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function TableView() {
+function TableView({ available }) {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -29,9 +30,13 @@ function TableView() {
           </tr>
         </thead>
         <tbody>
-          {books?.map((book) => (
-            <Row key={book._id} book={book} />
-          ))}
+          {books?.map((book) =>
+            available ? (
+              <Row key={book._id} book={book} />
+            ) : (
+              book.quantity > 0 && <Row key={book._id} book={book} />
+            )
+          )}
         </tbody>
       </table>
     </div>
