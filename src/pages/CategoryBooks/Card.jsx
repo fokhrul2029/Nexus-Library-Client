@@ -1,3 +1,4 @@
+import { FaStar } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
@@ -10,10 +11,18 @@ function Card({ book }) {
     navigate(`/book-details/${id}`);
   };
 
+  const renderStar = () => {
+    let stars = [];
+    for (let i = 0; rating > i; i++) {
+      stars.push(<FaStar key={i} />);
+    }
+    return stars;
+  };
+
   return (
     <div className="rounded overflow-hidden shadow-lg bg-white">
       <img
-        src="https://i.ibb.co/tmnCTkx/Screenshot-44.png"
+        src={img}
         alt="Book Name 1"
         className="w-full h-44 object-cover rounded-t-lg"
       />
@@ -22,8 +31,10 @@ function Card({ book }) {
         <div className="text-gray-600 text-base mb-2">By {author.name}</div>
         <div className="text-gray-600 text-base mb-2">Category: {category}</div>
         <div className="flex items-center mb-4">
-          <span>Star:</span>
-          <div className="text-gray-600 text-base">{rating}</div>
+          <span className="ml-2">Star:</span>
+          <div className="text-base flex text-yellow-500 items-center">
+            {renderStar()}
+          </div>
         </div>
         <div className="flex">
           <button

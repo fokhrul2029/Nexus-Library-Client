@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Modal from "./Modal";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { FaStar } from "react-icons/fa6";
 
 function BookDetails() {
   const bookId = useParams();
@@ -23,19 +24,13 @@ function BookDetails() {
       });
   }, [bookUrl]);
 
-  // const url = `http://localhost:3000/borrowed-books?email=${user.email}`;
-
-  // useEffect(() => {
-  //   axios
-  //     .get(url)
-  //     .then((res) => {
-  //       const num = res.data.length;
-  //       setCounter(num);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, [url, counter]);
+  const renderStar = () => {
+    let stars = [];
+    for (let i = 0; rating > i; i++) {
+      stars.push(<FaStar key={i} />);
+    }
+    return stars;
+  };
 
   return (
     <div className="flex justify-center items-center">
@@ -54,7 +49,13 @@ function BookDetails() {
               <h2 className="text-3xl font-semibold mb-2">{name}</h2>
               <p className="text-gray-600 mb-2">Category: {category}</p>
               <p className="text-gray-600 mb-2">Quantity: {quantity}</p>
-              <p className="text-gray-600 mb-2">Rating: {rating}</p>
+              <div className="flex gap-2 items-center">
+                <span>Rating: </span>
+                <p className="text-yellow-500 flex gap-1 items-center">
+                  {renderStar()}
+                </p>
+              </div>
+
               <p className="text-gray-600 mb-6">{description}</p>
               <div className="flex gap-2 items-center">
                 <button onClick={() => navigate(-1)} className="btn btn-info">

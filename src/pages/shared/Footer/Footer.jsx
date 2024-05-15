@@ -19,7 +19,7 @@ function Footer() {
     </>
   );
   return (
-    <div className="bg-gray-300 mt-10">
+    <div className="bg-gray-900 mt-10 text-white">
       <footer className="footer p-6 py-20 text-gray-content">
         <Link to="/">
           <Logo />

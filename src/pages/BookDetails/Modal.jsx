@@ -76,6 +76,11 @@ function Modal({ book }) {
       })
       .catch((error) => {
         console.log(error);
+        swal({
+          title: "Request failed!",
+          text: "Something went wrong. try later!",
+          icon: "warning",
+        });
       });
   };
   return (

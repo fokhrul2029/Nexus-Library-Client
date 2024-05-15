@@ -19,6 +19,9 @@ function CategoryBooks() {
       .catch((error) => console.log(error));
   }, [url]);
 
+ 
+
+
   return (
     <div>
       <h1 className="text-4xl py-10 font-medium text-center rounded-lg bg-gray-200">
