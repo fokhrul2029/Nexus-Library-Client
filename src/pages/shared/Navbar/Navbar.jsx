@@ -1,6 +1,6 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../Logo/Logo";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../contextApi/AuthProvider";
 import swal from "sweetalert";
 import axios from "axios";
@@ -9,6 +9,8 @@ function Navbar() {
   const location = useLocation();
   const { pathname } = location;
   const { user, logout } = useContext(AuthContext);
+
+  const [theme, setTheme] = useState(true);
 
   const links = (
     <>
@@ -24,17 +26,35 @@ function Navbar() {
       <li>
         <NavLink to="/borrowed-books">Borrowed Books</NavLink>
       </li>
+      <li>
+        <h1
+          onClick={() => setTheme(!theme)}
+          className="bg-green-600 text-white"
+        >
+          {theme ? "Dark" : "Light"}
+        </h1>
+      </li>
     </>
   );
+
+  useEffect(() => {
+    document
+      .querySelector("body")
+      .setAttribute("data-theme", theme ? "light" : "dark");
+  }, [theme]);
 
   const handleLogout = () => {
     logout()
       .then(() => {
-        axios.post("https://b9-a11-jwt-battlefield-backend.vercel.app/logout");
         swal({
           title: "Logout Success!",
           icon: "success",
         });
+        axios.post(
+          "http://localhost:3000/logout",
+          { email: user.email },
+          { withCredentials: true }
+        );
       })
       .catch(() => {
         swal({

@@ -11,7 +11,7 @@ function BookDetails() {
   const { id } = bookId;
   const { name, img, category, quantity, rating, description } = book;
 
-  const bookUrl = `https://b9-a11-jwt-battlefield-backend.vercel.app/all-books/${id}`;
+  const bookUrl = `http://localhost:3000/all-books/${id}`;
   useEffect(() => {
     axios
       .get(bookUrl, { withCredentials: true })
@@ -23,7 +23,7 @@ function BookDetails() {
       });
   }, [bookUrl]);
 
-  // const url = `https://b9-a11-jwt-battlefield-backend.vercel.app/borrowed-books?email=${user.email}`;
+  // const url = `http://localhost:3000/borrowed-books?email=${user.email}`;
 
   // useEffect(() => {
   //   axios

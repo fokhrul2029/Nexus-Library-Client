@@ -13,7 +13,7 @@ function Writers() {
 
   useEffect(() => {
     axios
-      .get("https://b9-a11-jwt-battlefield-backend.vercel.app/writers")
+      .get("http://localhost:3000/writers")
       .then((res) => {
         setWriter(res.data);
       })

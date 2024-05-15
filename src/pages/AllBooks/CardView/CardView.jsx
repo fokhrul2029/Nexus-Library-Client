@@ -7,7 +7,7 @@ function CardView() {
 
   useEffect(() => {
     axios
-      .get("https://b9-a11-jwt-battlefield-backend.vercel.app/all-books", { withCredentials: true })
+      .get("http://localhost:3000/all-books", { withCredentials: true })
       .then((res) => {
         setBooks(res.data);
       })

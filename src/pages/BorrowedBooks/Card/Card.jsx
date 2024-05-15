@@ -15,7 +15,7 @@ function Card({ book }) {
     }).then((willDelete) => {
       if (willDelete) {
         axios
-          .patch(`https://b9-a11-jwt-battlefield-backend.vercel.app/return-books/${id}`)
+          .patch(`http://localhost:3000/return-books/${id}`)
           .then((res) => {
             console.log(res);
             swal({

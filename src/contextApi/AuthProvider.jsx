@@ -52,7 +52,7 @@ function AuthProvider({ children }) {
       // console.log("User Email Is: ",loggedUser)
       if (currentUser) {
         axios
-          .post("https://b9-a11-jwt-battlefield-backend.vercel.app/jwt", loggedUser, {
+          .post("http://localhost:3000/jwt", loggedUser, {
             withCredentials: true,
           })
           .then((res) => {
@@ -60,7 +60,7 @@ function AuthProvider({ children }) {
           });
       } else {
         axios
-          .post("https://b9-a11-jwt-battlefield-backend.vercel.app/logout", loggedUser, {
+          .post("http://localhost:3000/logout", loggedUser, {
             withCredentials: true,
           })
           .then((res) => {
