@@ -1,22 +1,7 @@
 /* eslint-disable react/prop-types */
 import Row from "../Row/Row";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
-function TableView({ available }) {
-  const [books, setBooks] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("https://b9-a11-jwt-battlefield-backend.vercel.app/all-books", { withCredentials: true })
-      .then((res) => {
-        setBooks(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
+function TableView({ available, books }) {
   return (
     <div className="overflow-x-auto">
       <table className="table">
