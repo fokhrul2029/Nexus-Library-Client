@@ -46,7 +46,7 @@ function Update() {
     console.log(bookInfo);
 
     axios
-      .put(`http://localhost:3000/update/${_id}`, { bookInfo })
+      .put(`https://b9-a11-jwt-battlefield-backend.vercel.app/update/${_id}`, { bookInfo })
       .then((res) => {
         console.log(res);
         swal({

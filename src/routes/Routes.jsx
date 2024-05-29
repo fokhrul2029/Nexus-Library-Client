@@ -20,8 +20,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
-        loader: () => fetch("http://localhost:3000/books-categories"),
+        path: "/", 
         element: <Home />,
       },
       {
@@ -51,7 +50,7 @@ const router = createBrowserRouter([
       {
         path: "/update/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/all-books/${params.id}`),
+          fetch(`https://b9-a11-jwt-battlefield-backend.vercel.app/all-books/${params.id}`),
         element: (
           <PrivateRoute>
             <Update />

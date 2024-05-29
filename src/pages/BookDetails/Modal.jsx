@@ -22,7 +22,7 @@ function Modal({ book }) {
     return formattedDate;
   };
 
-  const url = `http://localhost:3000/borrowed-books?email=${user.email}`;
+  const url = `https://b9-a11-jwt-battlefield-backend.vercel.app/borrowed-books?email=${user.email}`;
 
   useEffect(() => {
     axios
@@ -65,7 +65,7 @@ function Modal({ book }) {
 
     console.log(borrowInfo);
     axios
-      .patch("http://localhost:3000/borrowed", { borrowInfo })
+      .patch("https://b9-a11-jwt-battlefield-backend.vercel.app/borrowed", { borrowInfo })
       .then((res) => {
         console.log(res);
         swal({

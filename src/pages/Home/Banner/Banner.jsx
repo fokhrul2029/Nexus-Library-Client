@@ -7,11 +7,22 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
-import Slider from "../Slider/Slider";
-import { useLoaderData } from "react-router-dom";
+import Slider from "../Slider/Slider"; 
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function Banner() {
-  const categories = useLoaderData([]);
+  // const categories = useLoaderData([]);
+const [categories, setCategories ] = useState(null)
+
+  useEffect(() => {
+    axios
+      .get("https://b9-a11-jwt-battlefield-backend.vercel.app/books-categories")
+      .then((res) => setCategories(res.data))
+      .catch((error) => console.error(error));
+  }, []);
+
+
   return (
     <div>
       <Swiper

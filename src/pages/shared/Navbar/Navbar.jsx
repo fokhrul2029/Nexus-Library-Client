@@ -51,7 +51,7 @@ function Navbar() {
           icon: "success",
         });
         axios.post(
-          "http://localhost:3000/logout",
+          "https://b9-a11-jwt-battlefield-backend.vercel.app/logout",
           { email: user.email },
           { withCredentials: true }
         );

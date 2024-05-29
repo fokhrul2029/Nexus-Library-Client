@@ -12,7 +12,7 @@ function BookDetails() {
   const { id } = bookId;
   const { name, img, category, quantity, rating, description } = book;
 
-  const bookUrl = `http://localhost:3000/all-books/${id}`;
+  const bookUrl = `https://b9-a11-jwt-battlefield-backend.vercel.app/all-books/${id}`;
   useEffect(() => {
     axios
       .get(bookUrl, { withCredentials: true })

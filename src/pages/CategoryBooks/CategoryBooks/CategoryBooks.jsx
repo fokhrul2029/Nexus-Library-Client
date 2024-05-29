@@ -8,7 +8,7 @@ function CategoryBooks() {
   const [books, setBooks] = useState([]);
   const category = useParams();
 
-  const url = `http://localhost:3000/category-books?category=${category.category}`;
+  const url = `https://b9-a11-jwt-battlefield-backend.vercel.app/category-books?category=${category.category}`;
 
   useEffect(() => {
     axios
