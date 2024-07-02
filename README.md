@@ -26,3 +26,26 @@ Nexus Library: Welcome to Nexus Library, your ultimate online destination for an
 ## Demo:
 
 - **Live Link:** https://nexus-library-ab88f.web.app/
+- **Server Repo:** https://github.com/fokhrul2029/Nexus-Library-Server
+
+## Clone and Run The Project
+
+**To clone and Run the project on your local Computer, Follow the steps:**
+
+- **step 1:** clone the Repository
+
+```bash
+git clone https://github.com/fokhrul2029/Nexus-Library-Client.git
+```
+
+- **step 2:** Install Dependency
+
+```bash
+npm install
+```
+
+- **step 3:** Run on local computer
+
+```bash
+npm run dev
+```
